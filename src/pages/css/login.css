@@ -1,0 +1,59 @@
+.login{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("http://localhost:3000/assets/images/BackWhale.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}  
+
+.loginBox{
+    top: 15%;
+    background-color: white;
+    border: 0.1rem solid #001C30;
+    width: 31.3rem;
+    height: 43.5rem;
+    text-align: center;
+}
+
+.iptBox{
+    border: 0.1rem solid rgba(182,182,182,0.28);
+    background-color: #FFFFFF;
+    width: 22.5rem;
+    height: 3.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    align-items: center;
+}
+
+.pwBox{
+    margin-top: 1rem;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.28);
+}
+
+.autoLogin{
+    color: rgba(0, 0, 0, 0.28);
+}
+
+#loginBtn{
+    width: 22.5rem;
+    height: 2.5rem;
+    background-color:#001C30;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.linkText{
+    position: relative;
+    margin-left: 0;
+    text-align: left;
+}

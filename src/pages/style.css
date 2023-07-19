@@ -1,0 +1,160 @@
+.screen {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .screen .overlap-wrapper {
+    background-color: #ffffff;
+    border: 1px none;
+    height: var(--page-height);
+    width: var(--page-width);
+  }
+  
+  .screen .overlap {
+    height: 980px;
+    position: relative;
+    top: 100px;
+  }
+  
+  .screen .background-page-instance {
+    height: 794px !important;
+    top: 186px !important;
+  }
+  
+  .screen .view {
+    background-color: #ffffff;
+    border: 5px solid;
+    border-color: #001c30;
+    height: 960px;
+    left: 640px;
+    position: absolute;
+    top: 0;
+    width: 640px;
+  }
+  
+  .screen .component-107 {
+    left: 57px !important;
+    position: absolute !important;
+    top: 81px !important;
+  }
+  
+  .screen .component-107-instance {
+    left: 57px !important;
+    position: absolute !important;
+    top: 446px !important;
+  }
+  
+  .screen .design-component-instance-node {
+    left: 57px !important;
+    position: absolute !important;
+    top: 519px !important;
+  }
+  
+  .screen .view-2 {
+    left: 57px !important;
+    position: absolute !important;
+    top: 592px !important;
+  }
+  
+  .screen .view-3 {
+    left: 57px !important;
+    position: absolute !important;
+    top: 373px !important;
+  }
+  
+  .screen .view-4 {
+    left: 57px !important;
+    position: absolute !important;
+    top: 154px !important;
+  }
+  
+  .screen .view-5 {
+    left: 57px !important;
+    position: absolute !important;
+    top: 227px !important;
+  }
+  
+  .screen .view-6 {
+    left: 57px !important;
+    position: absolute !important;
+    top: 300px !important;
+  }
+  
+  .screen .frame-2 {
+    height: 61px;
+    left: 198px;
+    position: absolute;
+    top: 678px;
+    width: 256px;
+  }
+  
+  .screen .chevron-left {
+    height: 24px !important;
+    left: 56px !important;
+    position: absolute !important;
+    top: 17px !important;
+    width: 24px !important;
+  }
+  
+  .screen .text-wrapper-2 {
+    color: #000000;
+    font-family: "Jura-Regular", Helvetica;
+    font-size: 35px;
+    font-weight: 400;
+    height: 41px;
+    left: 121px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 9px;
+    white-space: nowrap;
+  }
+  
+  .screen .chevron-right {
+    height: 24px !important;
+    left: 177px !important;
+    position: absolute !important;
+    top: 17px !important;
+    width: 24px !important;
+  }
+  
+  .screen .component-108-instance {
+    left: 66px !important;
+    position: absolute !important;
+    top: 831px !important;
+  }
+  
+  .screen .overlap-group-wrapper {
+    height: 46px;
+    left: 428px;
+    position: absolute;
+    top: 754px;
+    width: 148px;
+  }
+  
+  .screen .overlap-2 {
+    background-color: #176b87;
+    height: 42px;
+    left: 15px;
+    position: relative;
+    top: 4px;
+    width: 133px;
+  }
+  
+  .screen .text-wrapper-3 {
+    color: #ffffff;
+    font-family: "Jura-Regular", Helvetica;
+    font-size: 25px;
+    font-weight: 400;
+    height: 30px;
+    left: 21px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 3px;
+    white-space: nowrap;
+  }
+  
