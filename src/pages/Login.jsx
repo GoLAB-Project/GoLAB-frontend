@@ -26,7 +26,7 @@ const Login = () => {
                 </div>
                 <Link to = {"/find-id"}><p className="linkText" id="idText">아이디찾기</p></Link>
                 <Link to = {"/find-pw"}><p className="linkText"id="pwText">비밀번호찾기</p></Link>
-                <Link to = {"/join"}><p className="linkText" id="joinText">아직 계정이 없으신가요?</p></Link>
+                <Link to = {"/register"}><p className="linkText" id="joinText">아직 계정이 없으신가요?</p></Link>
             </div>
         </div>
     )
