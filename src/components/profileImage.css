@@ -1,0 +1,9 @@
+.imageCircle{
+    width: 6rem;
+    height: 6rem;
+    border: #FFFFFF 4px solid;
+    border-radius: 50%;
+    background-color: aliceblue;
+    margin: auto;
+    cursor: pointer;
+}
