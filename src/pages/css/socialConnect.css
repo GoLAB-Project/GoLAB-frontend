@@ -1,0 +1,64 @@
+/* Assuming these are some general styles for the toggle switch */
+.socialConnectToggle {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 14%;
+    margin-bottom: 20%;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    margin-top: 5px;
+    margin-left: 31%;
+  }
+  .googleToggle{
+    margin-left: 35%;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 30px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #001C30;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  label{
+    font-weight: 800;
+    margin: 1% 0;
+    font-size: larger;
+  }

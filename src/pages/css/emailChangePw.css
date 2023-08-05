@@ -1,0 +1,58 @@
+.newPw{
+    border: 0.1rem solid rgba(182,182,182,0.28);
+    background-color: #FFFFFF;
+    width: 22.5rem;
+    height: 3.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    align-items: center;
+    margin-bottom: 3%;
+}
+
+
+.goLogin{
+    margin-top: 35%;
+}
+
+.newPwChk{
+    border: 0.1rem solid rgba(182,182,182,0.28);
+    background-color: #FFFFFF;
+    width: 22.5rem;
+    height: 3.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    align-items: center;
+}
+
+.view-icon {
+    background-image: url('../../../public/assets/images/login/viewEye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    margin-left: 2%;
+    opacity: 60%;
+  }
+  
+  .hide-icon {
+    background-image: url('../../../public/assets/images/login/hideEye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    margin-left: 2%;
+    opacity: 60%;
+  }
+  

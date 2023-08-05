@@ -1,0 +1,18 @@
+.headerAndBack{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    padding-top: 5%;
+    margin-bottom: 14%;
+  }
+  
+  .backButton{
+    margin-left: 5%;
+    cursor : pointer;
+
+  }
+  
+  .headerName{
+    font-size: 2rem;
+    margin: auto;
+  }

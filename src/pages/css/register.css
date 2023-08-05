@@ -1,0 +1,65 @@
+.chkPlease{
+    width: 22.5rem;
+    height: 3rem;
+    background-color:#BF273C;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    margin: auto;
+}
+
+.joinipt{
+    border: 0.1rem solid rgba(182,182,182,0.28);
+    background-color: #FFFFFF;
+    width: 19rem;
+    height: 3.3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.joinpw{
+    border: 0.1rem solid rgba(182,182,182,0.28);
+    background-color: #FFFFFF;
+    width: 25rem;
+    height: 3.3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.joinEmail{
+    border: 0.1rem solid rgba(182,182,182,0.28);
+    background-color: #FFFFFF;
+    width: 19rem;
+    height: 3.3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.join-box{
+    margin: 0 3%;
+}
+
+.existId{
+    background-color: #D9D9D9;
+    font-size: 1rem;
+    width: 5.3rem;
+    height: 3.3rem;
+    border: none;
+    margin: 0 1.5%;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.regMessage{
+    color: #BF273C;
+    text-align: left;
+    margin-left: 8%;    
+}

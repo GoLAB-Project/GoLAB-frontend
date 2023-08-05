@@ -1,0 +1,52 @@
+.profileModal {
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20rem;
+    height: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    border:2px solid;
+    border-style: 20px solid;
+    z-index: 9999;
+}
+
+.quitBtn {
+    cursor: pointer;
+    width: 8%;
+    height: 8%;
+    margin-left: 90%;
+}
+
+.friendButtons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.friendChkBtn{
+    width: 7rem;
+    height: 2.3rem;
+    background-color:#001C30;
+    color: #FFFFFF;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    margin: 7% auto;
+    cursor: pointer;
+}
+
+.banBtn{
+    width: 7rem;
+    height: 2.3rem;
+    background-color:#FFFFFF;
+    color: red;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    margin: 7% auto;
+    cursor: pointer;
+    border: 1px solid red;
+    opacity: 80%;
+}
