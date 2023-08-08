@@ -8,6 +8,7 @@ import FindPw from './pages/FindPw';
 import Rank from './pages/Rank';
 import EmailChangePw from './pages/EmailChangePw';
 import Register from './pages/Register';
+import GameRoomList from './pages/GameRoomList';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/rank" element={<Rank/>}/>
           <Route path="/email-pw" element={<EmailChangePw/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/room-list" element={<GameRoomList/>}/>
         </Routes>
         </BrowserRouter>
     </div>
