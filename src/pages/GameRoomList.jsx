@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../pages/css/gameRoomList.css';
 import '../pages/css/common.css';
@@ -28,14 +28,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
 const GameRoomList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const roomsPerPage = 8;
-  const [selectedFilter, setSelectedFilter] = useState('');
-  const [selectedParticipants, setSelectedParticipants] = useState('');
-  const [showPwModal, setShowPwModal] = useState(false);
-  const [inputPassword, setInputPassword] = useState('');
-  const [passwordError, setPasswordError] = useState(false);
-
   const dummyRoomData = [
     { id: 1, roomType: '[일반전]', roomName: '1번 방', participants: 3, isPrivate: false },
     { id: 2, roomType: '[커스텀전]', roomName: '2번 방', participants: 5, isPrivate: true, password: '1234' },
@@ -59,6 +51,15 @@ const GameRoomList = () => {
     { id: 20, roomType: '[커스텀전]', roomName: '20번 방', participants: 3, isPrivate: false },
 ];
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const roomsPerPage = 8;
+  const [selectedFilter, setSelectedFilter] = useState('');
+  const [selectedParticipants, setSelectedParticipants] = useState('');
+  const [showPwModal, setShowPwModal] = useState(false);
+  const [inputPassword, setInputPassword] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [searchRoomQuery, setSearchRoomQuery] = useState('');
+  const [searchRoomResults, setSearchRoomResults] = useState(dummyRoomData);
 
 
   let filteredRooms = dummyRoomData.slice();
@@ -89,6 +90,14 @@ const GameRoomList = () => {
       (room) => room.participants === parseInt(selectedParticipants)
     );
   }
+
+  useEffect(() => {
+    const searchedRoomResults = filteredRooms.filter(
+        (room) =>
+            room.roomName.toLowerCase().includes(searchRoomQuery.toLowerCase())
+    );
+    setSearchRoomResults(searchedRoomResults.slice(indexOfFirstRoom, indexOfLastRoom));
+}, [searchRoomQuery]);
 
   const totalPages = Math.ceil(filteredRooms.length / roomsPerPage);
   const indexOfLastRoom = currentPage * roomsPerPage;
@@ -123,6 +132,12 @@ const GameRoomList = () => {
     }
   };
 
+  const handleRoomSearchChange = (event) => {
+    setSearchRoomQuery(event.target.value);
+};
+
+let roomsToDisplay = searchRoomQuery !== '' ? searchRoomResults : currentRooms;
+
   return (
     <div className='backPage'>
       <div className='contentBox'>
@@ -142,7 +157,7 @@ const GameRoomList = () => {
             </select>
         </div>
         <div className='roomListBox'>
-        {currentRooms.map((room) => (
+        {roomsToDisplay .map((room) => (
             <div
               className='oneRoomList'
               key={room.id}
@@ -184,8 +199,14 @@ const GameRoomList = () => {
             <button className='enterButton'>참여하기</button>
           </Link>
         </div>
-        <input className='searchRoom' type='text' placeholder='검색' />
-        <button className='searchBtn'>검색</button>
+        <input
+            className='searchRoom'
+            type='text'
+            placeholder='방 이름으로 검색'
+            value={searchRoomQuery}
+            onChange={handleRoomSearchChange}
+        />
+            <button className='searchBtn'>검색</button>
             {/* 비밀번호 모달창 */}
             {showPwModal && (
               <div className='pwModal'>
