@@ -21,4 +21,10 @@
     text-align: center;
 }
 
-
+.gameContainer{
+  border: 2px solid #000000;
+  width: 55rem;
+  height: 50rem;
+  border-radius: 1rem;
+  background-color: #FFFFFF;
+}
