@@ -16,7 +16,7 @@ const SocialConnect = () => {
     if (!toggleState[platform]) {
       const isChecked = window.confirm("연동하시겠습니까?");
       if (isChecked) {
-        const userId = "shubi";
+        const userId = "user100";
         window.location.href = `http://localhost:8080/login/social/${userId}/${platform}`;
       }
     }
@@ -26,7 +26,7 @@ const SocialConnect = () => {
     if (toggleState[platform]) {
       const isConfirmed = window.confirm("연동을 해제하시겠습니까?");
       if (isConfirmed) {
-        const disconnectUserId = "shubi";
+        const disconnectUserId = "user100";
         axios({
           url: `/login/social/disconnect/${disconnectUserId}/${platform}`,
           method: 'delete', 
@@ -54,12 +54,12 @@ const SocialConnect = () => {
   
 
   useEffect(() => {
-    fetchDataFromServer();
+    getConnectData();
   }, []);
 
-  const fetchDataFromServer = async () => {
+  const getConnectData = async () => {
     try {
-      const userId = "shubi";
+      const userId = "user100";
       const response = await axios.get(`/login/social/${userId}`);
       const connectInfo = response.data;
 
@@ -69,7 +69,7 @@ const SocialConnect = () => {
         kakao: connectInfo["3"] === "YES",
       });
     } catch (error) {
-      console.error("Error fetching data from server:", error);
+      console.error("Error getting data from server:", error);
     }
   };
 
