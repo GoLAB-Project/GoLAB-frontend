@@ -1,0 +1,95 @@
+.chat-bubble {
+    max-width: 80%;
+    margin: 3% 5%;
+    padding: 2% 4%;
+    border-radius: 1rem;
+    position: relative;
+    clear: both;
+	line-height: normal;
+  }
+  
+  .chat-bubble::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+  
+  .user {
+    float: right;
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  
+  .user:before {
+	position: absolute;
+	right: 0;
+	top: 29%;
+	width: 0;
+	height: 0;
+	border: 1.3em solid transparent;
+	border-left-color: #FFFFFF;
+	border-right: 0;
+	border-bottom: 0;
+    border-bottom-right-radius: 60%;
+    border-bottom-left-radius: 60%;
+	margin-top: -0.2em;
+	margin-right: -1em;
+  }
+
+  .user:after{
+    content: '';
+	position: absolute;
+	right: 0;
+	top: 25%;
+	width: 0;
+	height: 0;
+	border: 1.3em solid transparent;
+	border-left-color: #FFFFFF;
+	border-right: 0;
+	border-top: 0;
+    border-top-right-radius: 60%;
+    border-top-left-radius: 60%;
+	margin-top: -0.6em;
+	margin-right: -1em;
+  }
+  
+  .other {
+    float: left;
+    background-color: #DAFFFB;
+  }
+  
+  .other:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 25%;
+	width: 0;
+	height: 0;
+	border: 1.3em solid transparent;
+	border-right-color: #DAFFFB;
+	border-left: 0;
+	border-bottom: 0;
+	border-bottom-right-radius: 60%;
+    border-bottom-left-radius: 60%;
+	margin-top: -0.1em;
+	margin-left: -1em;
+  }
+  
+  .other:after{
+    content: '';
+	position: absolute;
+	left: 0;
+	top: 25%;
+	width: 0;
+	height: 0;
+	border: 1.3em solid transparent;
+	border-right-color: #DAFFFB;
+	border-left: 0;
+	border-top: 0;
+	border-top-right-radius: 60%;
+    border-top-left-radius: 60%;
+	margin-top: -0.6em;
+	margin-left: -1em;
+  }
