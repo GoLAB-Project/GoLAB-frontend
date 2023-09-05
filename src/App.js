@@ -11,6 +11,7 @@ import Register from './pages/Register';
 import GameRoomList from './pages/GameRoomList';
 import RoomOptionModal from './pages/RoomOptionModal';
 import GameRoom from './pages/GameRoom';
+import IndividualChat from './pages/IndividualChat';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/room-list" element={<GameRoomList/>}/>
           <Route path="/room-option" element={<RoomOptionModal/>}/>
           <Route path="/room" element={<GameRoom/>}/>
+          <Route path="/individual" element={<IndividualChat/>}/>
         </Routes>
         </BrowserRouter>
     </div>
