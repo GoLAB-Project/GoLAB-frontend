@@ -1,0 +1,188 @@
+.individualHeader{
+    margin: 3% 2%;
+    margin-left: 6%;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.individualContent{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.searchFriend{
+    border: 0.1rem solid rgba(182,182,182,0.28);
+    background-color: #FFFFFF;
+    width: 17rem;
+    height: 2.4rem;
+    font-size: 1rem;
+    font-weight: 700;
+    align-items: center;
+}
+
+.searchFriend::placeholder {
+    color: rgba(0, 0, 0, 0.28);
+}
+
+.searchFriendBtn{
+    background-color: #001C30;
+    color: #FFFFFF;
+    font-size: 1rem;
+    width: 3.5rem;
+    height: 2.5rem;
+    margin-left: 1%;
+    cursor: pointer;
+}
+
+.commercialBox{
+    margin-left: 3%;
+    width: 27rem;
+    background-color: lightslategray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.friendListBox{
+    border: 2px solid #000000;
+    border-radius: 0.8rem;
+    width: 25rem;
+    height: 40rem;
+    margin: 1% 1%;
+    margin-left: 6%;
+    display: flex;
+    flex-direction: column;
+}
+
+.oneFriend{
+    margin: 1% 3%;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    border-bottom: 1px solid #999999;
+    padding: 1% 3%;
+    cursor: pointer;
+  }
+
+.oneFriend:hover{
+    background-color: rgba(119,187,255,0.25);
+    font-weight: 600;
+}
+
+.activeFriend{
+    background-color: rgba(119, 187, 255, 0.25);
+    font-weight: 600;
+    border-left: 5px solid #176B87;
+}
+
+.friendProfile{
+    width: 2rem;
+    height: auto;
+}
+
+.friendChatRoom{
+    margin: 1% 2%;
+    width: 33rem;
+    height: 40rem;
+    margin-left: 3%;
+}
+
+.noChoose{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatLogo{
+    width: 15rem;
+    margin: 45% auto;
+}
+
+
+.friendChatting{
+    width: 30rem;
+    height: 40rem;
+    background-color: rgba(139, 196, 252, 0.65);
+    display: flex;
+    flex-direction: column;
+}
+
+.msgContent{
+    flex-grow: 1;
+    height: inherit;
+    overflow: auto;
+}
+
+.msgInputDiv{
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.msgInput{
+    border: 0.1rem solid #444444;
+    background-color: #FFFFFF;
+    width: 26rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    align-items: center;
+    resize: none;
+}
+
+.sendMsg{
+    background-color: #001C30;
+    color: #FFFFFF;
+    font-size: 1rem;
+    width: 4.3rem;
+    height: 2.8rem;
+    margin-left: 1%;
+    cursor: pointer;
+  }
+
+
+.chatHeader{
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: fixed;
+    width: 30rem;
+    z-index: 999;
+    margin: 0;
+    padding: 0.5% 0;
+    background-color: rgba(139, 196, 252);
+}
+
+
+.closeChatBtn{
+    width: 1rem;
+    margin-right: 4%;
+    cursor: pointer;
+}
+
+.whoChat{
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.chatBubbleContent{
+    margin-top: 7%;}
+
+
+
+.msgContent::-webkit-scrollbar{
+    width: 4px;
+    background-color: transparent;
+}
+
+.msgContent:hover::-webkit-scrollbar-thumb{
+    height: 30%;;
+    background-color: #176B87;
+    border-radius: 1rem;
+}
+
+.msgContent:hover::-webkit-scrollbar-track{
+    background-color: rgba(23,107,135,0.1);
+}
