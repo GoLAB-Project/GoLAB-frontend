@@ -94,7 +94,6 @@ const IndividualChat = () => {
 
   const handleSendSocket = () => {
     const convertData = {
-      roomId: "1",
       receiveUserId: activeFriendIndex,
       message: messageInput,
     };
