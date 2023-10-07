@@ -8,7 +8,7 @@ import ChatBubble from "../components/ChatBubble";
 const socket = new WebSocket("ws://localhost:8080/socket");
 
 const IndividualChat = () => {
-  const [userId, setUserId] = useState("user100"); // 추후 세션에서 값 가져오는 것으로 변경
+  const [userId, setUserId] = useState(1); // <Muk> 추후 세션에서 값 가져오는 것으로 변경
   const [friendList, setFriendList] = useState([]);
 
   // useEffect(() => {
@@ -25,22 +25,17 @@ const IndividualChat = () => {
   //       }
   // }
 
+  // <Muk> 서버 상의 친구(채팅방) 목록을 가져오는 부분 필요
   const dummyFriends = [
-    { profileImage: "프로필1", nickname: "유저1", roomId: "1" },
-    { profileImage: "프로필2", nickname: "유저2", roomId: "2" },
-    { profileImage: "프로필3", nickname: "유저3", roomId: "3" },
-    { profileImage: "프로필4", nickname: "유저4", roomId: "4" },
-    { profileImage: "프로필5", nickname: "유저5", roomId: "5" },
+    { profileImage: "프로필2", nickname: "유저2", roomId: "1" },
+    { profileImage: "프로필3", nickname: "유저3", roomId: "2" },
+    { profileImage: "프로필4", nickname: "유저4", roomId: "3" },
+    { profileImage: "프로필5", nickname: "유저5", roomId: "4" },
+    { profileImage: "프로필6", nickname: "유저6", roomId: "5" },
   ];
 
-  const [messages, setMessages] = useState([
-    { text: "자니...?", isUser: true },
-    {
-      text: "다름이 아니라 혹시 넷플릭스 비밀번호 바꿨어?? 로그인이 안되네",
-      isUser: true,
-    },
-    { text: "Hi there!", isUser: false },
-  ]);
+  // <Muk> 서버 상의 채팅 정보를 가져오는 부분 필요
+  const [messages, setMessages] = useState([]);
 
   const [activeFriendIndex, setActiveFriendIndex] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -54,16 +49,37 @@ const IndividualChat = () => {
     setSearchResults(filteredResults);
   }, [searchQuery]);
 
-  const handleFriendClick = (index) => {
+  const convertMessages = (list) => {
+    return list.map((chat) => {
+      return {
+        text: chat.message,
+        isUser: chat.sendUserId === userId,
+      };
+    });
+  };
+
+  const getChattingList = async (receiveUserId) => {
+    const response = await axios.get(`/chatting/${receiveUserId}`);
+    const newMessages = convertMessages(response.data);
+    return [...newMessages];
+  };
+
+  const handleFriendClick = async (index) => {
     if (activeFriendIndex === index) {
       setActiveFriendIndex(null);
+      setMessages([]);
     } else {
       setActiveFriendIndex(index);
+
+      // <Muk> 채팅방 입장 시 채팅 목록 갱신 (테스트용으로 +2)
+      const newMessages = await getChattingList(index + 2);
+      setMessages([...newMessages]);
     }
   };
 
   const closeChatClick = () => {
     setActiveFriendIndex(null);
+    setMessages([]);
   };
 
   const handleSearchChange = (event) => {
@@ -94,7 +110,7 @@ const IndividualChat = () => {
 
   const handleSendSocket = () => {
     const convertData = {
-      receiveUserId: activeFriendIndex,
+      receiveUserId: activeFriendIndex + 2, // <Muk> 테스트용으로 +2
       message: messageInput,
     };
     socket.send(JSON.stringify(convertData));
@@ -102,13 +118,16 @@ const IndividualChat = () => {
 
   socket.onopen = () => {};
   socket.onmessage = (event) => {
+    // <Muk> 데이터 파싱(채팅방 목록, 채팅방)
     const data = JSON.parse(event.data);
+    const { roomList, chattingList } = data;
 
-    // 데이터 파싱(채팅방 목록, 채팅방)
+    // <Muk> 채팅방 목록 갱신(현재 프론트 상태에서는 필요 없음)
+    console.log(roomList);
 
-    // 채팅방 목록 갱신
-
-    // 채팅 목록 갱신
+    // <Muk> 채팅 목록 갱신(현재 프로토타입 버전이라 변환 필요)
+    const newMessages = convertMessages(chattingList);
+    setMessages([...newMessages]);
   };
 
   return (
