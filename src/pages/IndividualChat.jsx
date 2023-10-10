@@ -153,15 +153,19 @@ const IndividualChat = () => {
     );
     const receiveUserId = idList[0];
 
-    if (isInNotReadMessages(newMessages)) {
-      const convertData = {
-        type: "read",
-        receiveUserId: receiveUserId, // <Muk> 테스트용
-      };
-      if (receiveUserId) socket.send(JSON.stringify(convertData));
-    }
+    // 현재 활성화된 채팅방이 업데이트 되는가?
+    // 아니라면 안 읽은 메시지의 수를 출력시킬 수 있을 것이다.
+    if (activeFriendIndex === receiveUserId) {
+      if (isInNotReadMessages(newMessages)) {
+        const convertData = {
+          type: "read",
+          receiveUserId: receiveUserId, // <Muk> 테스트용
+        };
+        if (receiveUserId) socket.send(JSON.stringify(convertData));
+      }
 
-    setMessages([...newMessages]);
+      setMessages([...newMessages]);
+    }
   };
 
   return (
