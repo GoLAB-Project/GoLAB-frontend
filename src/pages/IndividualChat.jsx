@@ -53,6 +53,7 @@ const IndividualChat = () => {
     return list.map((chat) => {
       return {
         text: chat.message,
+        notRead: chat.notRead,
         isUser: chat.sendUserId === userId,
       };
     });
@@ -64,6 +65,13 @@ const IndividualChat = () => {
     return [...newMessages];
   };
 
+  const isInNotReadMessages = (newMessages) => {
+    // notRead === 1이고 isUser === false인 경우 true 반환
+    return newMessages.some(
+      (message) => message.notRead === 1 && message.isUser === false
+    );
+  };
+
   const handleFriendClick = async (index) => {
     if (activeFriendIndex === index) {
       setActiveFriendIndex(null);
@@ -73,6 +81,15 @@ const IndividualChat = () => {
 
       // <Muk> 채팅방 입장 시 채팅 목록 갱신 (테스트용으로 +2)
       const newMessages = await getChattingList(index + 2);
+
+      if (isInNotReadMessages(newMessages)) {
+        const convertData = {
+          type: "read",
+          receiveUserId: index + 2, // <Muk> 테스트용으로 +2
+        };
+        socket.send(JSON.stringify(convertData));
+      }
+
       setMessages([...newMessages]);
     }
   };
@@ -110,6 +127,7 @@ const IndividualChat = () => {
 
   const handleSendSocket = () => {
     const convertData = {
+      type: "chat",
       receiveUserId: activeFriendIndex + 2, // <Muk> 테스트용으로 +2
       message: messageInput,
     };
@@ -127,7 +145,27 @@ const IndividualChat = () => {
 
     // <Muk> 채팅 목록 갱신(현재 프로토타입 버전이라 변환 필요)
     const newMessages = convertMessages(chattingList);
-    setMessages([...newMessages]);
+
+    // <Muk> 상대 id 가져오기
+    const sendUserIdList = chattingList.map((chat) => chat.sendUserId);
+    const idList = Array.from(
+      new Set(sendUserIdList.filter((id) => id !== userId))
+    );
+    const receiveUserId = idList[0];
+
+    // 현재 활성화된 채팅방이 업데이트 되는가?
+    // 아니라면 안 읽은 메시지의 수를 출력시킬 수 있을 것이다.
+    if (activeFriendIndex === receiveUserId) {
+      if (isInNotReadMessages(newMessages)) {
+        const convertData = {
+          type: "read",
+          receiveUserId: receiveUserId, // <Muk> 테스트용
+        };
+        if (receiveUserId) socket.send(JSON.stringify(convertData));
+      }
+
+      setMessages([...newMessages]);
+    }
   };
 
   return (
