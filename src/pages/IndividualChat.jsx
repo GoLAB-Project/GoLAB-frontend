@@ -85,14 +85,12 @@ const IndividualChat = () => {
             setMessages([]);
         } else {
             setActiveFriendId(id);
-
-            // <Muk> 채팅방 입장 시 채팅 목록 갱신 (테스트용으로 +2)
             const newMessages = await getChattingList(id);
 
             if (isInNotReadMessages(newMessages)) {
                 const convertData = {
                     type: "read",
-                    receiveUserId: id, // <Muk> 테스트용으로 +2
+                    receiveUserId: id,
                 };
                 socket.send(JSON.stringify(convertData));
             }
@@ -248,8 +246,19 @@ const IndividualChat = () => {
                         )}
                     </div>
                 </div>
-            </div>
+              </div>
+            ) : (
+              <div className="noChoose">
+                <img
+                  src={`${process.env.PUBLIC_URL}/assets/images/GolabLogo.png`}
+                  className="chatLogo"
+                />
+              </div>
+            )}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 export default IndividualChat;
