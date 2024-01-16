@@ -37,6 +37,7 @@ input::placeholder {
 }
 .loginIcons{
     margin: 0 6%;
+    cursor: pointer;
 }
 
 .goLab{
@@ -48,4 +49,8 @@ input::placeholder {
 .linkText:hover {
     color: black;
     text-decoration: underline;
+}
+
+.tempLog{
+    cursor: pointer;
 }

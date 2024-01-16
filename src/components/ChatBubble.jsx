@@ -1,5 +1,5 @@
 import React from 'react';
-import './chatBubble.css'; // Make sure to adjust the path to your CSS file
+import './chatBubble.css';
 
 const ChatBubble = ({ message, isUser }) => {
     return (
