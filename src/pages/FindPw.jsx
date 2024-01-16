@@ -42,7 +42,7 @@ const FindPw = () => {
             <button className="btnEmail" disabled={!isEmailValid} style={{ cursor: isEmailValid ? "pointer" : "default" }} >메일 발송</button>
           {!isEmailEmpty && !validEmailFormat && <div className="errorText">올바른 이메일 형식을 입력해주세요.</div>}
           {isEmailEmpty && <div className="errorText">가입시 입력한 이메일을 입력해주세요.</div>}
-          <Link to = {"/login"}><div className="goLogin"><SubmitButton submitText={"로그인하기"} /></div></Link>
+          <Link to = {"/login"}><div className="goButton"><SubmitButton submitText={"로그인하기"} /></div></Link>
         </div>
       </div>
     </div>
