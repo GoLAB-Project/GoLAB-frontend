@@ -6,6 +6,7 @@
     position: relative;
     clear: both;
 	line-height: normal;
+	box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
   }
   
   .chat-bubble::before {
