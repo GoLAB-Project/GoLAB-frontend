@@ -1,5 +1,6 @@
 .iptId::placeholder {
     color: rgba(0, 0, 0, 0.28);
+    padding-left: 2%;
 }
 
 .iptId{
