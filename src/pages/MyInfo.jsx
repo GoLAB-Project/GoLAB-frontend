@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import StyledLink from "../components/StyledLink";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,6 +8,13 @@ import HeaderAndBack from "../components/HeaderAndBack";
 import ProfileImage from "../components/ProfileImage";
 
 const MyInfo = () => {
+    const [mmr, setMmr] = useState("30");
+    useEffect(() => {
+        setMmr(20);
+    }, []);
+    
+    
+
     return (
         <div className='backPage'>
             <div className='contentBox'>
@@ -21,9 +28,12 @@ const MyInfo = () => {
                         <div>등급</div>
                         <div>
                             경험치바
-                            <ProgressBar striped variant="info" animated now={45} />
+                            <ProgressBar variant="info" animated now={45} />
                         </div>
-                        <div>레이팅바</div>
+                        <div>
+                            레이팅바
+                            {mmr>50 ? (<ProgressBar variant="success" now={80} />):(<ProgressBar variant="danger" now={mmr} />)}
+                        </div>
                         <div>승패 수</div>
                     </div>
                     <StyledLink to={"/find-id"}><p className="editText">비밀번호 수정</p></StyledLink>
