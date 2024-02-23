@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import StyledLink from "../components/StyledLink";
 import '../pages/css/findId.css';
 import '../pages/css/findPw.css';
 import '../pages/css/common.css';
@@ -42,7 +42,7 @@ const FindPw = () => {
             <button className="btnEmail" disabled={!isEmailValid} style={{ cursor: isEmailValid ? "pointer" : "default" }} >메일 발송</button>
           {!isEmailEmpty && !validEmailFormat && <div className="errorText">올바른 이메일 형식을 입력해주세요.</div>}
           {isEmailEmpty && <div className="errorText">가입시 입력한 이메일을 입력해주세요.</div>}
-          <Link to = {"/login"}><div className="goButton"><SubmitButton submitText={"로그인하기"} /></div></Link>
+          <StyledLink to = {"/login"}><div className="goButton"><SubmitButton submitText={"로그인하기"} /></div></StyledLink>
         </div>
       </div>
     </div>

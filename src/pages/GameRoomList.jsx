@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import StyledLink from "../components/StyledLink";
 import '../pages/css/gameRoomList.css';
 import '../pages/css/common.css';
 
@@ -195,9 +195,9 @@ let roomsToDisplay = searchRoomQuery !== '' ? searchRoomResults : currentRooms;
           />
         </div>
         <div className='enterGame'>
-          <Link to='/room-option'>
+          <StyledLink to='/room-option'>
             <button className='enterButton'>참여하기</button>
-          </Link>
+          </StyledLink>
         </div>
         <input
             className='searchRoom'

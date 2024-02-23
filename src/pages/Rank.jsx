@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import StyledLink from "../components/StyledLink";
 import '../pages/css/common.css';
 import '../pages/css/rank.css';
 import ProfileImage from "../components/ProfileImage";

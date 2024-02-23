@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import StyledLink from "../components/StyledLink";
 import '../pages/css/roomOptionModal.css';
 import '../pages/css/common.css';
 import SubmitButton from '../components/SubmitButton';
@@ -28,7 +28,7 @@ const RoomOptionModal = () => {
     return(
         <div className='backPage'>
             <div className="optionModal">
-            <Link to = {"/room-list"}><img className='quitOptBtn' src={`${process.env.PUBLIC_URL}/assets/images/quit.png`} alt=""/></Link>
+            <StyledLink to = {"/room-list"}><img className='quitOptBtn' src={`${process.env.PUBLIC_URL}/assets/images/quit.png`} alt=""/></StyledLink>
                 <div className='optBtnGroup'>
                     <div className={`customRoomBtn roomOptBtn ${activeContent === 'custom' ? 'activeCustomRoomBtn' : ''}`}
                         onClick={() => changeContentBtn('custom')}>

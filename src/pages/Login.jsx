@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import StyledLink from "../components/StyledLink";
 import axios from 'axios';
 import '../pages/css/login.css'
 import '../pages/css/common.css'
@@ -88,9 +88,9 @@ const Login = () => {
                     <a href="http://localhost:8080/login/social/kakao"><img src={`${process.env.PUBLIC_URL}/assets/images/login/kakao.png`} className="loginIcons" alt="카카오로그인" /></a>
                     <span onClick={() => handleLogin()}><img src={`${process.env.PUBLIC_URL}/assets/images/login/loginButton.png`} className="loginIcons" alt="일반로그인" /></span>
                 </div>
-                <Link to={"/find-id"}><p className="linkText" id="idText">아이디찾기</p></Link>
-                <Link to={"/find-pw"}><p className="linkText" id="pwText">비밀번호찾기</p></Link>
-                <Link to={"/register"}><p className="linkText" id="joinText">아직 계정이 없으신가요?</p></Link>
+                <StyledLink to={"/find-id"}><p className="linkText" id="idText">아이디찾기</p></StyledLink>
+                <StyledLink to={"/find-pw"}><p className="linkText" id="pwText">비밀번호찾기</p></StyledLink>
+                <StyledLink to={"/register"}><p className="linkText" id="joinText">아직 계정이 없으신가요?</p></StyledLink>
                 <span className="tempLog" onClick={() => handleLogout()}>로그아웃</span>
                 <span className="tempLog" onClick={() => checkPassword()}>비밀번호 확인</span>
             </div>

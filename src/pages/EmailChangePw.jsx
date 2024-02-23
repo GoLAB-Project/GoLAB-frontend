@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import StyledLink from "../components/StyledLink";
 import '../pages/css/emailChangePw.css';
 import '../pages/css/common.css';
 import HeaderAndBack from '../components/HeaderAndBack.jsx';
@@ -44,11 +44,11 @@ const EmailChangePw = () => {
             onChange={handlePasswordMatch}
           />
           <button className={showPasswordChk ? 'hide-icon' : 'view-icon'} onClick={checkPasswordVisibility} />
-          {!passwordMatch && showPasswordChk ? <div className="errorText">비밀번호가 일치하지 않습니다.</div> : null}          <Link to={'/login'}>
+          {!passwordMatch && showPasswordChk ? <div className="errorText">비밀번호가 일치하지 않습니다.</div> : null}          <StyledLink to={'/login'}>
             <div className='goLogin'>
               <SubmitButton submitText={'수정하기'} />
             </div>
-          </Link>
+          </StyledLink>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import StyledLink from "../components/StyledLink";
 import '../pages/css/findId.css';
 import '../pages/css/common.css';
 import HeaderAndBack from "../components/HeaderAndBack.jsx";
@@ -39,8 +39,8 @@ const FindId = () => {
           {!isEmailEmpty && !validEmailFormat && <div className="errorText">올바른 이메일 형식을 입력해주세요.</div>}
           {isEmailEmpty && <div className="errorText">가입시 입력한 이메일을 입력해주세요.</div>}
         <div className="buttons">
-            <Link to = {"/find-pw"}><button className='findPWandLogin'>비밀번호찾기</button></Link>
-            <Link to = {"/login"}><button className='findPWandLogin'>로그인하기</button></Link>
+            <StyledLink to = {"/find-pw"}><button className='findPWandLogin'>비밀번호찾기</button></StyledLink>
+            <StyledLink to = {"/login"}><button className='findPWandLogin'>로그인하기</button></StyledLink>
         </div>
         </div>
       </div>
