@@ -1,0 +1,27 @@
+.myProfileImage{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+.progressInfoBox {
+    background-color: rgba(119, 187, 255, 0.38);
+}
+
+.myInfoBox{
+    padding: 1% 14%;
+}
+
+.editText{
+    text-align: left;
+    font-weight: 800;
+}
+.editText:hover{
+    text-decoration: underline;
+}
+
+#byeLink{
+    color: rgba(0, 0, 0, 0.28);
+}
+#byeLink:hover{
+    color: rgba(0, 0, 0, 0.7);
+}
