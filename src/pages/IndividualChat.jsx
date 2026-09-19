@@ -241,24 +241,14 @@ const IndividualChat = () => {
                                 <img
                                     src={`${process.env.PUBLIC_URL}/assets/images/GolabLogo.png`}
                                     className="chatLogo"
+                                    alt="고랩"
                                 />
                             </div>
                         )}
                     </div>
                 </div>
-              </div>
-            ) : (
-              <div className="noChoose">
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/GolabLogo.png`}
-                  className="chatLogo"
-                />
-              </div>
-            )}
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 export default IndividualChat;
