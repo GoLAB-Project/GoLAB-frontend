@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import SocialConnect from './pages/SocialConnect';
@@ -18,6 +18,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Navigate to="/room-option" replace />}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/social-connect" element={<SocialConnect/>}/>
           <Route path="/find-id" element={<FindId/>}/>

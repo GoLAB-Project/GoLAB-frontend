@@ -37,12 +37,11 @@
   }
 }
 
-* {
-  flex-grow: 0;
-  text-decoration: none; /* 링크의 밑줄 제거 */
-  color: inherit; 
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-ul,li{
+ul, li {
   list-style: none;
 }

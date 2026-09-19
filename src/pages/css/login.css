@@ -1,11 +1,13 @@
 .iptBox{
-    border: 0.1rem solid rgba(182,182,182,0.28);
-    background-color: #FFFFFF;
-    width: 22.5rem;
-    height: 3.75rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-    align-items: center;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    width: 100%;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 0 14px;
+    color: var(--text);
 }
 
 .pwBox{
@@ -13,27 +15,26 @@
 }
 
 input::placeholder {
-    color: rgba(0, 0, 0, 0.28);
+    color: var(--muted);
 }
 
 .autoLogin{
-    margin: 5% 13%;
+    margin: 18px 0;
     text-align: left;
-    color: rgba(0, 0, 0, 0.28);
+    color: var(--muted);
 }
 
-
 .linkText{
-    margin: 1% 14%;
+    margin: 8px 0;
     text-align: left;
-    color: rgba(0, 0, 0, 0.28);
+    color: var(--muted);
 }
 #joinText{
     text-align: center;
 }
-#joinText:hover{
-    color: black;
-    text-decoration: underline;
+#joinText:hover,
+.linkText:hover{
+    color: var(--accent);
 }
 .loginIcons{
     margin: 0 6%;
@@ -41,11 +42,7 @@ input::placeholder {
 
 .goLab{
     padding: 8% 0;
-    width: 320px;
+    width: 220px;
     height: auto;
-}
-
-.linkText:hover {
-    color: black;
-    text-decoration: underline;
+    filter: brightness(10);
 }
