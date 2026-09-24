@@ -11,27 +11,27 @@ import Register from './pages/Register';
 import GameRoomList from './pages/GameRoomList';
 import RoomOptionModal from './pages/RoomOptionModal';
 import GameRoom from './pages/GameRoom';
-import IndividualChat from './pages/IndividualChat';
+import Chat from './pages/Chat';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/room-option" replace />}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/social-connect" element={<SocialConnect/>}/>
-          <Route path="/find-id" element={<FindId/>}/>
-          <Route path="/find-pw" element={<FindPw/>}/>
-          <Route path="/rank" element={<Rank/>}/>
-          <Route path="/email-pw" element={<EmailChangePw/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/room-list" element={<GameRoomList/>}/>
-          <Route path="/room-option" element={<RoomOptionModal/>}/>
-          <Route path="/room" element={<GameRoom/>}/>
-          <Route path="/individual" element={<IndividualChat/>}/>
+          <Route path="/" element={<Navigate to="/room-option" replace />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/social-connect" element={<SocialConnect />} />
+          <Route path="/find-id" element={<FindId />} />
+          <Route path="/find-pw" element={<FindPw />} />
+          <Route path="/rank" element={<Rank />} />
+          <Route path="/email-pw" element={<EmailChangePw />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/room-list" element={<GameRoomList />} />
+          <Route path="/room-option" element={<RoomOptionModal />} />
+          <Route path="/room" element={<GameRoom />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
-        </BrowserRouter>
+      </BrowserRouter>
     </div>
   );
 }

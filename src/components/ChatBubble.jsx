@@ -15,4 +15,4 @@ const ChatBubble = ({ message, isUser, kind, label }) => {
     );
 };
 
-export default ChatBubble;
+export default React.memo(ChatBubble);
