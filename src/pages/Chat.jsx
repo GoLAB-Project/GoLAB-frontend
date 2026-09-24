@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import "../pages/css/common.css";
 import "../pages/css/individualChat.css";
@@ -22,49 +22,59 @@ const Chat = () => {
     const [userId, setUserId] = useState();
     const [friendList, setFriendList] = useState([]);
     const [roomList, setRoomList] = useState([]);
-
-    useEffect(() => {
-        getFriendChatList();
-        getUserId();
-        getRoomList();
-    }, []);
-
-    const getFriendChatList = async () => {
-        try {
-            const response = await axios.get('/friend/');
-            setFriendList(response.data);
-        } catch (error) {
-            console.error("Error getting data from server:", error);
-        }
-    }
-
-    const getUserId = async () => {
-        try {
-            const response = await axios.get('/user/id');
-            setUserId(response.data);
-        } catch (error) {
-            console.error("id값 불러오기 오류 Error getting data from server::", error);
-        }
-    }
-
-    const getRoomList = async () => {
-        try {
-            const response = await axios.get('/chat/rooms'); // REST API 기획에 맞게 경로 변경
-            setRoomList(response.data);
-        } catch (error) {
-            console.error("roomList 불러오기 오류 Error getting data from server:.", error);
-        }
-    }
-
     const [messages, setMessages] = useState([]);
     const [activeRoomId, setActiveRoomId] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
-    const [searchResults, setSearchResults] = useState(roomList);
+    const [searchResults, setSearchResults] = useState([]);
     const [messageInput, setMessageInput] = useState("");
     const [hasMore, setHasMore] = useState(true);
     const msgContentRef = useRef(null);
 
     const { sendMessage, sendRead } = useChatSocket(userId, activeRoomId, setMessages, setRoomList);
+
+    const getFriendChatList = useCallback(async (currentUserId) => {
+        try {
+            const myId = currentUserId || 1;
+            const response = await axios.get(`/friend/${myId}`);
+            setFriendList(response.data || []);
+        } catch (error) {
+            console.error("Error getting data from server:", error);
+        }
+    }, []);
+
+    const getRoomList = useCallback(async (currentUserId) => {
+        try {
+            const myId = currentUserId || 1;
+            const response = await axios.get('/chat/rooms', {
+                params: { userId: myId }
+            });
+            setRoomList(response.data || []);
+        } catch (error) {
+            console.error("roomList 불러오기 오류 Error getting data from server:.", error);
+        }
+    }, []);
+
+    const getUserId = useCallback(async () => {
+        try {
+            const response = await axios.get('/user/id');
+            const id = response.data || 1;
+            setUserId(id);
+            return id;
+        } catch (error) {
+            console.error("id값 불러오기 오류 Error getting data from server::", error);
+            setUserId(1);
+            return 1;
+        }
+    }, []);
+
+    useEffect(() => {
+        const init = async () => {
+            const currentUserId = await getUserId();
+            getFriendChatList(currentUserId);
+            getRoomList(currentUserId);
+        };
+        init();
+    }, [getUserId, getFriendChatList, getRoomList]);
 
     useEffect(() => {
         setSearchResults(roomList);
@@ -77,29 +87,29 @@ const Chat = () => {
         setSearchResults(filteredResults);
     }, [searchQuery, roomList]);
 
-    const convertMessages = React.useCallback((list) => {
-        return list.map((chat) => {
-            return {
-                id: chat.id,
-                text: chat.message,
-                isUser: chat.sendUserId === userId,
-            };
-        });
+    const convertMessages = useCallback((list) => {
+        return list.map((chat) => ({
+            id: chat.id,
+            text: chat.message,
+            isUser: chat.sendUserId === userId,
+        }));
     }, [userId]);
 
-    const getChattingList = React.useCallback(async (roomId, cursor = null) => {
-        const url = cursor 
+    const getChattingList = useCallback(async (roomId, cursor = null) => {
+        const url = cursor
             ? `/chat/rooms/${roomId}/messages?cursor=${cursor}&size=30`
             : `/chat/rooms/${roomId}/messages?size=30`;
         const response = await axios.get(url);
+        const rawList = response.data.chattingList || response.data || [];
+        const converted = convertMessages(rawList).reverse();
         return {
-            messages: convertMessages(response.data.chattingList || response.data),
+            messages: converted,
             nextCursor: response.data.nextCursor,
             hasNext: response.data.hasNext !== undefined ? response.data.hasNext : false
         };
     }, [convertMessages]);
 
-    const handleRoomClick = React.useCallback(async (roomId) => {
+    const handleRoomClick = useCallback(async (roomId) => {
         if (activeRoomId === roomId) {
             setActiveRoomId(null);
             setMessages([]);
@@ -108,7 +118,7 @@ const Chat = () => {
             const data = await getChattingList(roomId);
             setMessages([...data.messages]);
             setHasMore(data.hasNext);
-            
+
             if (data.messages.length > 0) {
                 const lastMsg = data.messages[data.messages.length - 1];
                 sendRead(roomId, lastMsg.id);
@@ -116,46 +126,47 @@ const Chat = () => {
         }
     }, [activeRoomId, getChattingList, sendRead]);
 
-    const handleScroll = React.useCallback(async () => {
+    const handleScroll = useCallback(async () => {
         const msgContent = msgContentRef.current;
         if (msgContent && msgContent.scrollTop === 0 && hasMore && messages.length > 0) {
             const oldestChatId = messages[0].id;
             const scrollHeightBefore = msgContent.scrollHeight;
-            
+
             const data = await getChattingList(activeRoomId, oldestChatId);
             setMessages(prev => [...data.messages, ...prev]);
             setHasMore(data.hasNext);
 
             // 스크롤 위치 유지
             setTimeout(() => {
-                msgContent.scrollTop = msgContent.scrollHeight - scrollHeightBefore;
+                if (msgContent) {
+                    msgContent.scrollTop = msgContent.scrollHeight - scrollHeightBefore;
+                }
             }, 0);
         }
     }, [activeRoomId, hasMore, messages, getChattingList]);
 
-    const closeChatClick = React.useCallback(() => {
+    const closeChatClick = useCallback(() => {
         setActiveRoomId(null);
         setMessages([]);
     }, []);
 
-    const handleSearchChange = React.useCallback((event) => {
+    const handleSearchChange = useCallback((event) => {
         setSearchQuery(event.target.value);
     }, []);
 
-    const handleSendMessage = React.useCallback(() => {
+    const handleSendMessage = useCallback(() => {
         if (messageInput.trim() !== "") {
             sendMessage(activeRoomId, messageInput);
             setMessageInput("");
         }
     }, [messageInput, activeRoomId, sendMessage]);
 
-    // 끝에 새 메시지가 추가될 때만 스크롤을 맨 아래로 이동 (이전 과거 메시지 로드 시에는 이동 안 함)
+    // 끝에 새 메시지가 추가될 때만 스크롤을 맨 아래로 이동
     const prevMessagesLength = useRef(messages.length);
     useEffect(() => {
         if (activeRoomId !== null && msgContentRef.current) {
             if (messages.length > prevMessagesLength.current) {
                 const lastMessageAdded = messages[messages.length - 1];
-                // 메시지가 뒤에 추가되었는지 확인하는 간단한 휴리스틱
                 if (lastMessageAdded) {
                     msgContentRef.current.scrollTop = msgContentRef.current.scrollHeight;
                 }
@@ -164,7 +175,7 @@ const Chat = () => {
         prevMessagesLength.current = messages.length;
     }, [messages, activeRoomId]);
 
-    const handleOnKeyPress = React.useCallback((e) => {
+    const handleOnKeyPress = useCallback((e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             handleSendMessage();
             e.preventDefault();
@@ -188,9 +199,9 @@ const Chat = () => {
                 <div className="individualContent">
                     <div className={"friendListBox"}>
                         {searchResults.map((room) => (
-                            <RoomItem 
-                                key={room.roomId || room.id} 
-                                room={room} 
+                            <RoomItem
+                                key={room.roomId || room.id}
+                                room={room}
                                 isActive={activeRoomId === (room.roomId || room.id)}
                                 onClick={handleRoomClick}
                             />
@@ -251,4 +262,5 @@ const Chat = () => {
         </div>
     );
 };
+
 export default Chat;
